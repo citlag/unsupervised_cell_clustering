@@ -1,0 +1,9 @@
+model_dir: /home/citlalli/code/hibou-L
+cell_padding: 0
+cell_masking: False
+magnification: 40
+model_name: HibouLCellVIT
+model_version: 1.0
+n_clusters: 5
+cluster_method: GMM # 'KMeans', 'GMM', 'Spectral'
+reducer_method: UMAP # 'PCA', 'UMAP'
