@@ -1,6 +1,7 @@
 # Citlalli Gamez Serna
 
 import os
+import numpy as np
 from lib.arg_parser_yaml import get_args
 from lib.annotation_utils import read_cell_annotation_file, save_cell_annotation_file
 from lib.hibouL_features import extract_features_hibouL
@@ -52,8 +53,8 @@ def perform_unsupervised_clustering(cells_info, args):
     n_clusters = int(args.n_clusters)
     cluster_method = args.cluster_method
     reducer_method = args.reducer_method
-    cell_features = cells_info['cell_feature']
-    nuclei_type = cells_info['nuclei_type']
+    cell_features = np.vstack(cells_info['cell_feature'])
+    nuclei_type = np.array(cells_info['nuclei_type'])
     
     # ---- Perform clustering -----
     labels, probabilities, score = perform_unsupervised_clustering_with_n_clusters(cell_features, n_clusters, method=cluster_method, dim_reduc=reducer_method)
