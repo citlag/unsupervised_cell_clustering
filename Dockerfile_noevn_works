@@ -17,8 +17,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     openjdk-17-jdk-headless ca-certificates-java \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Openslide
+# Install Openslide and large_image with pip
 RUN apt-get update && apt-get install -y --no-install-recommends openslide-tools libopenslide0 && rm -rf /var/lib/apt/lists/*
+#RUN pip install --no-cache-dir "large-image[openslide]" large-image-source-gdal large-image-source-tiff large-image-converter
 
 ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 ENV PATH=$JAVA_HOME/bin:$PATH
@@ -32,7 +33,8 @@ ENV PYTHONPATH=/workspace
 # Upgrade pip, wheel, setuptools
 RUN pip install --no-cache-dir --upgrade pip wheel setuptools
 
-# Install openslide-python gdal via conda to avoid compatibility issues
+# Install openslide-python via pip to avoid compatibility issues
+#RUN pip install --no-cache-dir gdal pandas openslide-python
 RUN conda install -y -c conda-forge gdal pandas openslide-python
 
 # Install large_image and its dependencies via pip to avoid compatibility issues
@@ -43,12 +45,29 @@ RUN pip install --no-cache-dir \
     large-image-source-tiff \
     large-image-converter
 
+
+# Install GDAL and large_image with conda to avoid compatibility issues
+#RUN conda install -y -c conda-forge gdal wheel pandas openslide-python # added openslide-python (not tested)
+#RUN conda install -c conda-forge large-image
+#RUN conda install -c conda-forge large-image-source-gdal
+#RUN conda install -c conda-forge large-image-source-tiff
+#RUN conda install -c conda-forge large-image-converter
+
+# Install Python dependencies
+#RUN pip install --no-cache-dir large-image-source-openslide # added this line (not tested)
+
 # Copy environment and requirements
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
+
 # Copy project files
+#RUN mkdir -p /lib
 COPY ./lib/ ./lib/
+#RUN mkdir -p /data
+#COPY ./data/ /data/
+#RUN mkdir -p /hibou-L
+#COPY ./hibou-L/ /hibou-L/
 
 # Copy scripts
 COPY read_cell_detections_perform_clustering.py config.yaml ./

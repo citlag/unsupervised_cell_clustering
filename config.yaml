@@ -1,4 +1,4 @@
-model_dir: /home/citlalli/code/hibou-L
+#model_dir: /home/citlalli/code/hibou-L
 cell_padding: 0
 cell_masking: False
 magnification: 40

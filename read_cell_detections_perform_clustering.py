@@ -37,7 +37,7 @@ def extract_cell_features(args, save_file=True ):
         file_cell_feature = file_cell_feature + '_masked' +'.h5' if cell_masking else file_cell_feature + '.h5'
         path_out = os.path.join(output_dir, file_cell_feature)
         save_cell_annotation_file(path_out, cells_info)
-    
+        
     return cells_info
 
 
@@ -71,7 +71,6 @@ def perform_unsupervised_clustering(cells_info, args):
     
 
 if __name__ == '__main__':
-    
     args = get_args()
     output_dir = args.output_dir
     file_wsi = args.file_wsi

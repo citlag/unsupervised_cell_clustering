@@ -15,11 +15,13 @@ def get_args():
     
     parser.add_argument('-config', '--config_file', dest='config_file', required=True, help='Specify .yaml configuration file')
     
-    parser.add_argument('-output', '--out_dir', dest='output_dir', required=True, help='Specify path to save the outputs')
+    parser.add_argument('-output', '--out_dir', dest='output_dir', required=True, help='Specify directory to save the outputs')
     
     parser.add_argument('-wsi', '--wsi_path', dest='file_wsi', required=True, help='Path to wsi reference extract the cell features.')
     
     parser.add_argument('-anno', '--anno_path', dest='file_anno', required=True, help='Path to the geojson annotation file containing the cell detections.')
+
+    parser.add_argument('-model', '--model_dir', dest='model_dir', required=True, help='Directory to deep learning model to extract the cell features/embeddings.')
     
     args = parser.parse_args()
     

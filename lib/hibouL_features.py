@@ -137,7 +137,7 @@ def extract_features_hibouL(file_wsi, cell_info, model_dir, padding=0, masked_ce
     slide_base_size = [metadata['sizeX'], metadata['sizeY']]
     
     # ---- Load Hibou-L ---
-    processor = AutoImageProcessor.from_pretrained(model_dir, trust_remote_code=True)
+    processor = AutoImageProcessor.from_pretrained(model_dir, trust_remote_code=True, use_fast=True)
     model = AutoModel.from_pretrained(model_dir, trust_remote_code=True)
     model.eval()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
