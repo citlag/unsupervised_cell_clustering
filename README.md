@@ -64,10 +64,18 @@ GEOJSON structure:
 
 <br>
 
+## Docker image
+When running the created docker image make sure you mount your local data to the folder '/workspace/data' and your local hibou-L model directory to folder '/workspace/hibou-L' as the main running script in docker have the '-model', '-wsi' and '-anno' arguments set by default like that. 
+E.g.:
+```
+docker run --rm --gpus all -v /your/local/data/dir:/workspace/data -v /your/local/hibou-L_dir:/workspace/hibou-L dockerImageName
+```
+
 ## Author
 * **Citlalli G&aacute;mez Serna** - September 2025
 
 <br>
 
 ### Last Update
-03.09.2025
+
+06.09.2025
